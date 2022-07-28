@@ -6,7 +6,7 @@ UNAME_S      := $(shell uname -s)
 USER         := $(shell whoami)
 
 BASE         := macos
-BREWFILE     := os/macos/.Brewfile
+BREWFILE     := macos/.Brewfile
 BREW_PREFIX  := /usr/local
 
 .PHONY: all install
