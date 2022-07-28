@@ -5,14 +5,9 @@ UNAME_M      := $(shell uname -m)
 UNAME_S      := $(shell uname -s)
 USER         := $(shell whoami)
 
-ifeq ($(UNAME_S), Darwin)
 BASE         := macos
 BREWFILE     := os/macos/.Brewfile
-ifeq ($(UNAME_M), arm64)
-BREW_PREFIX  := /opt/homebrew
-else ifeq ($(UNAME_M), x86_64)
 BREW_PREFIX  := /usr/local
-endif
 
 .PHONY: all install
 
