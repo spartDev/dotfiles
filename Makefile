@@ -39,8 +39,8 @@ usage:
 .PHONY: macos link unlink
 
 macos: brew stow
-	bash $(DOTFILES_DIR)/os/macos/defaults.sh
-	$(BREW_PREFIX)/bin/stow os/macos
+	bash $(DOTFILES_DIR)/macos/defaults.sh
+	$(BREW_PREFIX)/bin/stow macos
 	echo $(BREW_PREFIX)/bin/bash | sudo tee -a /etc/shells
 	chsh -s $(BREW_PREFIX)/bin/bash
 	ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/bin/airport
