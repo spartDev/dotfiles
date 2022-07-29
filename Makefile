@@ -7,7 +7,7 @@ UNAME_S      := $(shell uname -s)
 USER         := $(shell whoami)
 
 BASE         := macos
-BREWFILE     := macos/.Brewfile
+BREWFILE     := os/macos/.Brewfile
 BREW_PREFIX  := /usr/local
 
 .PHONY: all install
@@ -40,7 +40,7 @@ usage:
 .PHONY: macos link unlink
 
 macos: sudo brew stow
-	bash $(DOTFILES_DIR)/macos/defaults.sh
+	bash $(DOTFILES_DIR)/os/macos/defaults.sh
 	$(BREW_PREFIX)/bin/stow macos
 	echo $(BREW_PREFIX)/bin/bash | sudo tee -a /etc/shells
 	chsh -s $(BREW_PREFIX)/bin/bash
