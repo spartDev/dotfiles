@@ -87,7 +87,7 @@ else
 endif
 	$(BREW_PREFIX)/bin/brew bundle --file=$(DOTFILES_DIR)/$(BREWFILE)
 	$(BREW_PREFIX)/bin/brew analytics off
-  for EXT in $$(cat $(DOTFILES_DIR)/editors/visual-studio-code/Codefile); do code --install-extension $$EXT; done
+  # for EXT in $$(cat $(DOTFILES_DIR)/editors/visual-studio-code/Codefile); do code --install-extension $$EXT; done
 
 stow:
 	[ -f ~/.bash_profile ] && [ ! -L ~/.bash_profile ] && mv ~/.bash_profile ~/.bash_profile.bak
