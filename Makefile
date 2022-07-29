@@ -1,13 +1,10 @@
 
-DOTFILES_DIR := $(shell echo $(HOME)/dotfiles/dotfiles)
-# DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL        := /bin/sh
-UNAME_M      := $(shell uname -m)
-UNAME_S      := $(shell uname -s)
 USER         := $(shell whoami)
 
 BASE         := macos
-BREWFILE     := os/macos/.Brewfile
+BREWFILE     := os/macos/Brewfile
 BREW_PREFIX  := /usr/local
 
 .PHONY: all install
@@ -39,7 +36,7 @@ usage:
 
 .PHONY: macos link unlink
 
-macos: sudo brew stow
+macos: sudo brew node stow
 	bash $(DOTFILES_DIR)/os/macos/defaults.sh
 	$(BREW_PREFIX)/bin/stow macos
 	echo $(BREW_PREFIX)/bin/bash | sudo tee -a /etc/shells
@@ -87,7 +84,7 @@ else
 endif
 	$(BREW_PREFIX)/bin/brew bundle --file=$(DOTFILES_DIR)/$(BREWFILE)
 	$(BREW_PREFIX)/bin/brew analytics off
-  # for EXT in $$(cat $(DOTFILES_DIR)/editors/visual-studio-code/Codefile); do code --install-extension $$EXT; done
+	for EXT in $$(cat $(DOTFILES_DIR)/editors/visual-studio-code/Codefile); do code --install-extension $$EXT; done
 
 stow:
 	[ -f ~/.bash_profile ] && [ ! -L ~/.bash_profile ] && mv ~/.bash_profile ~/.bash_profile.bak
@@ -95,8 +92,9 @@ stow:
 	$(BREW_PREFIX)/bin/stow bash
 	$(BREW_PREFIX)/bin/stow git
 
-# node-packages: npm
-# 	eval $$(fnm env); npm install -g $(shell cat install/npmfile)
+node:
+	fnm install --lts
+	eval $$(fnm env); npm install -g $(shell cat $(DOTFILES_DIR)/langs/javascript/npmfile)
 
 # restart:
 # 	bash $(DOTFILES_DIR)/bin/restart.sh
