@@ -1,6 +1,6 @@
 
-# DOTFILES_DIR := $(shell echo $(HOME)/dotfiles)
-DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+DOTFILES_DIR := $(shell echo $(HOME))
+# DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL        := /bin/sh
 UNAME_M      := $(shell uname -m)
 UNAME_S      := $(shell uname -s)
