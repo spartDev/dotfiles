@@ -1,5 +1,6 @@
 
-DOTFILES_DIR := $(shell echo $(HOME)/dotfiles)
+# DOTFILES_DIR := $(shell echo $(HOME)/dotfiles)
+DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL        := /bin/sh
 UNAME_M      := $(shell uname -m)
 UNAME_S      := $(shell uname -s)
@@ -38,7 +39,7 @@ usage:
 
 .PHONY: macos link unlink
 
-macos: brew stow
+macos: sudo brew stow
 	bash $(DOTFILES_DIR)/macos/defaults.sh
 	$(BREW_PREFIX)/bin/stow macos
 	echo $(BREW_PREFIX)/bin/bash | sudo tee -a /etc/shells
@@ -70,6 +71,12 @@ unlink:
 	@printf "\\033[32m✓\\033[0m Symlinks removed. Manually remove ~/dotfiles directory if needed.\\n"
 
 .PHONY: brew stow
+
+sudo:
+ifndef GITHUB_ACTION
+	sudo -v
+	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+endif
 
 brew:
 ifeq ($(shell which brew),)
