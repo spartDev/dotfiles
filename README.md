@@ -24,7 +24,7 @@ The Xcode Command Line Tools includes `git` and `make` (not available on stock m
 1. Install this repo with `curl` available:
 
 ```bash
-bash -c "`curl -fsSL https://raw.githubusercontent.com/spartDev/myDotfiles/master/remote-install.sh`"
+bash -c "`curl -fsSL https://raw.githubusercontent.com/spartDev/dotfiles/master/remote-install.sh`"
 ```
 
 This will clone or download, this repo to `~/dotfiles` depending on the availability of `git`, `curl` or `wget`.
@@ -32,7 +32,7 @@ This will clone or download, this repo to `~/dotfiles` depending on the availabi
 2. Alternatively, clone manually into the desired location:
 
 ```bash
-git clone https://github.com/spartDev/myDotfiles.git ~/dotfiles
+git clone https://github.com/spartDev/dotfiles.git ~/dotfiles
 ```
 
 Use the [Makefile](./Makefile) to install everything.
