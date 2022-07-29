@@ -1,5 +1,5 @@
 
-DOTFILES_DIR := $(shell echo $(HOME))
+DOTFILES_DIR := $(shell echo $(HOME)/dotfiles/dotfiles)
 # DOTFILES_DIR := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 SHELL        := /bin/sh
 UNAME_M      := $(shell uname -m)
